@@ -1,6 +1,18 @@
-import contactsService from "../services/contactsServices.js";
+import * as contactsService from "../services/contactsServices.js";
+import { HttpError } from "../helpers/index.js";
+import {
+  createContactSchema,
+  updateContactSchema,
+} from "../schemas/contactsSchemas.js";
 
-export const getAllContacts = (req, res) => {};
+export const getAllContacts = async (req, res, next) => {
+  try {
+    const result = await contactsService.listContacts();
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getOneContact = (req, res) => {};
 

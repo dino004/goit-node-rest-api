@@ -1,4 +1,7 @@
 import express from "express";
+
+import contactsServices from "../services/contactsServices.js";
+
 import {
   getAllContacts,
   getOneContact,
@@ -9,7 +12,10 @@ import {
 
 const contactsRouter = express.Router();
 
-contactsRouter.get("/", getAllContacts);
+contactsRouter.get("/", async (req, res, next) => {
+  const result = await contactsServices.listContacts();
+  res.json(result);
+});
 
 contactsRouter.get("/:id", getOneContact);
 
