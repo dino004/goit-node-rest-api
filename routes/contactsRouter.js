@@ -10,10 +10,10 @@ contactsRouter.get("/", contactsControllers.getAllContacts);
 
 contactsRouter.get("/:id", contactsControllers.getOneContact);
 
-// contactsRouter.delete("/:id", deleteContact);
+contactsRouter.delete("/:id", contactsControllers.deleteContact);
 
 contactsRouter.post("/", isEmptyBody, contactsControllers.createContact);
 
-// contactsRouter.put("/:id", updateContact);
+contactsRouter.put("/:id", isEmptyBody, contactsControllers.updateContact);
 
 export default contactsRouter;

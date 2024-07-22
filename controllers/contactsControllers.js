@@ -29,8 +29,6 @@ const getOneContact = async (req, res, next) => {
   }
 };
 
-const deleteContact = (req, res) => {};
-
 const createContact = async (req, res, next) => {
   try {
     const { error } = createContactSchema.validate(req.body);
@@ -46,7 +44,35 @@ const createContact = async (req, res, next) => {
   }
 };
 
-const updateContact = (req, res) => {};
+const updateContact = async (req, res, next) => {
+  try {
+    const { error } = updateContactSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message);
+    }
+    const { id } = req.params;
+    const result = await contactsService.updateContactById(id, req.body);
+    if (!result) {
+      throw HttpError(404);
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteContact = async(req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await contactsService.removeContact(id)
+    if (!result) {
+      throw HttpError(404);
+    }
+    res.json(result)
+  } catch (error) {
+    next(error);
+  }
+};
 
 export default {
   getAllContacts,

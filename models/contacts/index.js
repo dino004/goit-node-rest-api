@@ -19,6 +19,17 @@ const getContactById = async (id) => {
   return result || null;
 };
 
+const updateContactById = async (id, data) => {
+  const contacts = await listContacts();
+  const index = contacts.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return null;
+  }
+  contacts[index] = { ...contacts[index], ...data };
+  await updateContact(contacts);
+  return contacts[index];
+};
+
 const removeContact = async (id) => {
   const contacts = await listContacts();
   const index = contacts.findIndex((item) => item.id === id);
@@ -48,5 +59,5 @@ export default {
   getContactById,
   removeContact,
   addContact,
-  updateContact,
+  updateContactById,
 };
