@@ -21,12 +21,12 @@ contactsRouter.post(
   contactsControllers.createContact
 );
 
-// contactsRouter.put(
-//   "/:id", isValidId,
-//   isEmptyBody,
-//   validateBody(updateContactSchema),
-//   contactsControllers.updateContact
-// );
+contactsRouter.put(
+  "/:id", isValidId,
+  isEmptyBody,
+  validateBody(updateContactSchema),
+  contactsControllers.updateContact
+);
 
 // contactsRouter.delete("/:id", isValidId, contactsControllers.deleteContact);
 

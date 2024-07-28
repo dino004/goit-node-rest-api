@@ -24,14 +24,14 @@ const createContact = async (req, res) => {
   res.status(201).json(result);
 };
 
-// const updateContact = async (req, res) => {
-//   const { id } = req.params;
-//   const result = await contactsService.updateContactById(id, req.body);
-//   if (!result) {
-//     throw HttpError(404);
-//   }
-//   res.json(result);
-// };
+const updateContact = async (req, res) => {
+  const { id } = req.params;
+  const result = await Contact.findByIdAndUpdate(id, req.body);
+  if (!result) {
+    throw HttpError(404);
+  }
+  res.json(result);
+};
 
 // const deleteContact = async (req, res) => {
 //   const { id } = req.params;
@@ -46,6 +46,6 @@ export default {
   getAllContacts: ctrlWrapper(getAllContacts),
   getOneContact: ctrlWrapper(getOneContact),
   createContact: ctrlWrapper(createContact),
+  updateContact: ctrlWrapper(updateContact),
   // deleteContact: ctrlWrapper(deleteContact),
-  // updateContact: ctrlWrapper(updateContact),
 };
