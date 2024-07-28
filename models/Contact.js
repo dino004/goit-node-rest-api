@@ -54,6 +54,10 @@ export const updateContactSchema = Joi.object({
   favorite: Joi.boolean(),
 });
 
+export const contactFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
 const Contact = model("Contact", contactSchema);
 
 export default Contact;
