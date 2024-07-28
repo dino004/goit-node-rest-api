@@ -9,17 +9,16 @@ const getAllContacts = async (req, res) => {
   res.json(result);
 };
 
-// const getOneContact = async (req, res) => {
-//   const { id } = req.params;
-//   const result = await contactsService.getContactById(id);
-//   if (!result) {
-//     throw HttpError(404);
-//   }
-//   res.json(result);
-// };
+const getOneContact = async (req, res) => {
+  const { id } = req.params;
+  const result = await Contact.findById(id);
+  if (!result) {
+    throw HttpError(404);
+  }
+  res.json(result);
+};
 
 const createContact = async (req, res) => {
-  // const result = await new Contact(req.body).save();
   const result = await Contact.create(req.body);
 
   res.status(201).json(result);
@@ -45,8 +44,8 @@ const createContact = async (req, res) => {
 
 export default {
   getAllContacts: ctrlWrapper(getAllContacts),
-  // getOneContact: ctrlWrapper(getOneContact),
-  // deleteContact: ctrlWrapper(deleteContact),
+  getOneContact: ctrlWrapper(getOneContact),
   createContact: ctrlWrapper(createContact),
+  // deleteContact: ctrlWrapper(deleteContact),
   // updateContact: ctrlWrapper(updateContact),
 };
