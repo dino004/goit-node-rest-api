@@ -9,7 +9,7 @@ import { validateBody } from "../helpers/index.js";
 import {
   createContactSchema,
   updateContactSchema,
-} from "../schemas/contacts-schemas.js";
+} from "../models/Contact.js";
 
 const contactsRouter = express.Router();
 
@@ -19,12 +19,12 @@ contactsRouter.get("/", contactsControllers.getAllContacts);
 
 // contactsRouter.delete("/:id", contactsControllers.deleteContact);
 
-// contactsRouter.post(
-//   "/",
-//   isEmptyBody,
-//   validateBody(createContactSchema),
-//   contactsControllers.createContact
-// );
+contactsRouter.post(
+  "/",
+  isEmptyBody,
+  validateBody(createContactSchema),
+  contactsControllers.createContact
+);
 
 // contactsRouter.put(
 //   "/:id",
