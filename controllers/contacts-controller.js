@@ -1,8 +1,6 @@
 import Contact from "../models/Contact.js";
 
-import { ctrlWrapper } from "../helpers/index.js";
-
-import { HttpError } from "../helpers/index.js";
+import { HttpError, ctrlWrapper } from "../helpers/index.js";
 
 const getAllContacts = async (req, res) => {
   const result = await Contact.find();
